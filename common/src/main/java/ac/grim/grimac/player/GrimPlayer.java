@@ -5,7 +5,6 @@ import ac.grim.grimac.api.AbstractCheck;
 import ac.grim.grimac.api.GrimUser;
 import ac.grim.grimac.api.config.ConfigManager;
 import ac.grim.grimac.api.handler.ResyncHandler;
-import ac.grim.grimac.checks.Check;
 import ac.grim.grimac.checks.impl.aim.processor.AimProcessor;
 import ac.grim.grimac.checks.impl.misc.ClientBrand;
 import ac.grim.grimac.checks.impl.misc.TransactionOrder;
@@ -582,20 +581,20 @@ public class GrimPlayer implements GrimUser {
     // TODO: Create a configurable timer for this
     @Override
     public void updatePermissions() {
-        if (platformPlayer == null) return;
-        try {
-            GrimAPI.INSTANCE.getScheduler().getEntityScheduler().execute(platformPlayer, GrimAPI.INSTANCE.getGrimPlugin(), () -> {
-                this.noModifyPacketPermission = platformPlayer.hasPermission("grim.nomodifypacket");
-                this.noSetbackPermission = platformPlayer.hasPermission("grim.nosetback");
-                for (AbstractCheck check : checkManager.allChecks.values()) {
-                    if (check instanceof Check c) {
-                        c.updatePermissions();
-                    }
-                }
-            }, null, 0);
-        } catch (Exception e) {
-            LogUtil.error("Failed to update permissions for " + getName() + "!", e);
-        }
+//        if (platformPlayer == null) return;
+//        try {
+//            GrimAPI.INSTANCE.getScheduler().getEntityScheduler().execute(platformPlayer, GrimAPI.INSTANCE.getGrimPlugin(), () -> {
+//                this.noModifyPacketPermission = platformPlayer.hasPermission("grim.nomodifypacket");
+//                this.noSetbackPermission = platformPlayer.hasPermission("grim.nosetback");
+//                for (AbstractCheck check : checkManager.allChecks.values()) {
+//                    if (check instanceof Check c) {
+//                        c.updatePermissions();
+//                    }
+//                }
+//            }, null, 0);
+//        } catch (Exception e) {
+//            LogUtil.error("Failed to update permissions for " + getName() + "!", e);
+//        }
     }
 
     public boolean isPointThree() {

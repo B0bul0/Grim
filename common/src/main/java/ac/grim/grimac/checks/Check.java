@@ -64,11 +64,11 @@ public class Check extends GrimProcessor implements AbstractCheck {
     }
 
     public final void updatePermissions() {
-        if (configName == null || player.platformPlayer == null) return;
-        final String id = configName.toLowerCase();
-        exemptPermission = player.platformPlayer.hasPermission("grim.exempt." + id);
-        noSetbackPermission = player.platformPlayer.hasPermission("grim.nosetback." + id);
-        noModifyPacketPermission = player.platformPlayer.hasPermission("grim.nomodifypacket." + id);
+//        if (configName == null || player.platformPlayer == null) return;
+//        final String id = configName.toLowerCase();
+//        exemptPermission = player.platformPlayer.hasPermission("grim.exempt." + id);
+//        noSetbackPermission = player.platformPlayer.hasPermission("grim.nosetback." + id);
+//        noModifyPacketPermission = player.platformPlayer.hasPermission("grim.nomodifypacket." + id);
     }
 
     public final boolean flagAndAlert(String verbose) {
