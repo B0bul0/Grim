@@ -8,6 +8,7 @@ import ac.grim.grimac.player.GrimPlayer;
 import com.github.retrooper.packetevents.protocol.packettype.PacketType;
 import com.github.retrooper.packetevents.protocol.packettype.PacketTypeCommon;
 import com.github.retrooper.packetevents.protocol.player.ClientVersion;
+import com.github.retrooper.packetevents.protocol.player.DiggingAction;
 import lombok.Getter;
 import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
@@ -60,7 +61,11 @@ public class Check extends GrimProcessor implements AbstractCheck {
     }
 
     public boolean shouldModifyPackets() {
-        return isEnabled && !player.disableGrim && !player.noModifyPacketPermission && !exemptPermission;
+        return isEnabled
+                && !player.disableGrim
+                && !player.noModifyPacketPermission
+                && !noModifyPacketPermission
+                && !exemptPermission;
     }
 
     public final void updatePermissions() {
@@ -203,4 +208,10 @@ public class Check extends GrimProcessor implements AbstractCheck {
         return isFlying(packetType);
     }
 
+    // prevent causing exploits with packet cancelling (ie noslow)
+    public boolean canCancel(DiggingAction action) {
+        return action != DiggingAction.RELEASE_USE_ITEM
+                // we check client version here because 1.8- doesn't predict dropping items, so we can cancel them. (see CompensatedInventory)
+                && (action != DiggingAction.DROP_ITEM && action != DiggingAction.DROP_ITEM_STACK || player.getClientVersion().isOlderThanOrEquals(ClientVersion.V_1_8));
+    }
 }
