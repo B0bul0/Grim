@@ -42,13 +42,13 @@ public class PacketPlayerJoinQuit extends PacketListenerAbstract {
         if (GrimAPI.INSTANCE.getConfigManager().getConfig().getBooleanElse("debug-pipeline-on-join", false)) {
             LogUtil.info("Pipeline: " + ChannelHelper.pipelineHandlerNamesAsString(event.getUser().getChannel()));
         }
-        if (platformPlayer.hasPermission("grim.alerts.enable-on-join") && platformPlayer.hasPermission("grim.alerts")) {
+        if (platformPlayer.hasPermission("grim.alerts.enable-on-join") && platformPlayer.hasPermission("grim.alerts") && GrimAPI.INSTANCE.getConfigManager().getConfig().getBooleanElse("alerts.enable-on-join", false)) {
             GrimAPI.INSTANCE.getAlertManager().toggleAlerts(platformPlayer, platformPlayer.hasPermission("grim.alerts.enable-on-join.silent"));
         }
-        if (platformPlayer.hasPermission("grim.verbose.enable-on-join") && platformPlayer.hasPermission("grim.verbose")) {
+        if (platformPlayer.hasPermission("grim.verbose.enable-on-join") && platformPlayer.hasPermission("grim.verbose") && GrimAPI.INSTANCE.getConfigManager().getConfig().getBooleanElse("verbose.enable-on-join", false)) {
             GrimAPI.INSTANCE.getAlertManager().toggleVerbose(platformPlayer, platformPlayer.hasPermission("grim.verbose.enable-on-join.silent"));
         }
-        if (platformPlayer.hasPermission("grim.brand.enable-on-join") && platformPlayer.hasPermission("grim.brand")) {
+        if (platformPlayer.hasPermission("grim.brand.enable-on-join") && platformPlayer.hasPermission("grim.brand") && GrimAPI.INSTANCE.getConfigManager().getConfig().getBooleanElse("brand.enable-on-join", false)) {
             GrimAPI.INSTANCE.getAlertManager().toggleBrands(platformPlayer, platformPlayer.hasPermission("grim.brand.enable-on-join.silent"));
         }
         if (platformPlayer.hasPermission("grim.spectate") && GrimAPI.INSTANCE.getConfigManager().getConfig().getBooleanElse("spectators.hide-regardless", false)) {
